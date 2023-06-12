@@ -1,0 +1,245 @@
+const express = require('express');
+const app = express();
+const mysql = require('mysql');
+const cors = require('cors');
+const bodyparser = require('body-parser')
+
+app.use(cors());
+app.use(express.json());
+app.use(bodyparser.urlencoded({extended:true}));
+app.listen(3000,()=>console.log('server running on port 3000'));
+
+const db = mysql.createConnection({
+    host: "119.59.96.90",
+    user: "projectoldhappy_admin",
+    password: "ytAb49*72",
+    database: "projectoldhappy_db",
+    port: "3306"
+})
+
+
+app.post('/upcertificate',(req,res)=>{
+  const certificate=req.body.certificate;
+  const userID=req.body.userID
+  const upcertificate="call upcertificate(?,?)";
+  db.query(upcertificate,[certificate,userID],(err,result)=>{
+    if(err){
+      console.log(err);
+    }else{
+      res.send(result[0]);
+    }
+  })
+
+})
+
+app.get('/getcertificate',(req,res)=>{
+  const certificate = req.query.certificate;
+  const getcertificate = "call getcertificate(?)";
+  db.query(getcertificate,[certificate],(err,result)=>{
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result[0]);
+      console.log(result[0])
+    }
+  })
+})
+
+app.post("/registermb", (req, res) => {
+    const email = req.body.email;
+    const passwords = req.body.passwords;
+    const tel = req.body.tel;
+    const status = req.body.status;
+    const registermb = "call registermb(?,?,?,?)";
+    db.query(registermb, [email, passwords,tel,status], (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result[0]);
+      }
+    });
+  });
+
+  app.get("/loginmb", (req, res) => {
+    const email = req.query.email;
+    const passwords = req.query.passwords;
+    const loginmb = "call loginmb(?,?)";
+    db.query(loginmb, [email, passwords], (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      if (result[0].length > 0) {
+        res.send(result[0]);
+      } else {
+        console.log("Wrong Email or Password");
+        res.send(false);
+      }
+    });
+  });
+
+  app.get('/Customer',(req,res)=>{
+    db.query("SELECT * FROM Customer",(err,result)=>{
+      if(err){
+        console.log(err);
+      }else{
+        res.send(result);
+      }
+    })
+  })
+
+  app.get('/gettourdetails',(req,res)=>{
+    const details=req.query.details;
+    const fullnames=req.query.fullname;
+    const days=req.query.days;
+    const times=req.query.times;
+    const typese=req.query.typese;
+    const quantitys=req.query.quantitys;
+    const remainders=req.query.remainders;
+    const gettourdetails="call gettourdetails(?,?,?,?,?,?,?)";
+    db.query(gettourdetails,[details,fullnames,days,times,typese,quantitys,remainders],(err,result)=>{
+    res.send(result[0])});
+  })
+
+  app.post('/createprofile',(req,res)=>{
+    
+    const Fname=req.body.Fname;
+    const Lname=req.body.Lname;
+    const Id_card_no=req.body.Id_card_no;
+    
+
+    const createprofile="call createprofile(?,?,?)";
+    db.query(createprofile,[Fname,Lname,Id_card_no],(err,result)=>{
+      if(err){
+        console.log(err);
+      }else{
+        res.send(result[0]);
+      }
+    })
+    
+  })
+
+  app.post('/createtour',(req,res)=>{
+    const nametour=req.body.nametour;
+    const days=req.body.days;
+    const quantity=req.body.quantity;
+    const details=req.body.details;
+    const typetour=req.body.typetour;
+    const userID=req.body.userID;
+    const tour_picture=req.body.tour_picture;
+    const createtour="call createtour(?,?,?,?,?,?,?)";
+    db.query(createtour,[nametour,days,quantity,details,typetour,userID,tour_picture],(err,result)=>{
+      if(err){
+        console.log(err);
+      }else{
+        res.send(result[0]);
+      }
+    })
+    
+  })
+
+  app.get('/getActivity',(req,res)=>{
+    const userID=req.query.userID
+    const getActivity="call getActivity(?)";
+    db.query(getActivity, [userID],(err,result)=>{
+    console.log(result[0])
+    res.send(result[0])});
+  })
+
+  app.get('/getrepout',(req,res)=>{
+    const tourID=req.query.tourID
+    const userID=req.query.userID
+    const report_detail=req.query.report_detail
+    const getrepout="call getrepout(?,?,?)";
+    db.query(getrepout, [tourID,userID,report_detail],(err,result)=>{
+    console.log(result[0])
+    res.send(result[0])});
+  })
+
+  app.get('/applytour',(req,res)=>{
+    const tourID=req.query.tourID
+    const userID=req.query.userID
+    const applytour="call applytour(?,?)";
+    db.query(applytour, [tourID,userID],(err,result)=>{
+    console.log(result[0])
+    res.send(result[0])});
+  })
+
+  app.get('/logoutmb',(req,res)=>{
+    const userID=req.query.userID
+    console.log(req.params)
+    const logoutmb="call logoutmb(?)";
+    db.query(logoutmb, [userID],(err,result)=>{
+    console.log(result[0])
+    res.send(result[0])});
+  })
+
+
+  app.get('/getdetail',(req,res)=>{
+    const tourID=req.query.tourID
+    console.log(req.params)
+    const getdetail="call getdetail(?)";
+    db.query(getdetail, [tourID],(err,result)=>{
+    console.log(result[0])
+    res.send(result[0])});
+  })
+
+  app.get('/getmain',(req,res)=>{
+    const getmain="call getmain()";
+    db.query(getmain, [],(err,result)=>{
+    console.log(result[0])
+    res.send(result[0])});
+  })
+
+  
+  
+  app.delete("/deletetour", (req, res) => {
+    const tourID=req.body.tourID
+    const deletetour = "call deletetour(?)";
+    console.log(tourID);
+    db.query(deletetour, [tourID], (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.send(result[0]);
+      }
+    });
+  });
+
+  app.delete("/deletetourcm", (req, res) => {
+    const tourID=req.body.tourID
+    const deletetourcm = "call deletetourcm(?)";
+    console.log(tourID);
+    db.query(deletetourcm, [tourID], (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.send(result[0]);
+      }
+    });
+  });
+
+  app.get('/getActivityguide',(req,res)=>{
+    const userID=req.query.userID
+    const getActivityguide="call getActivityguide(?)";
+    db.query(getActivityguide, [userID],(err,result)=>{
+    console.log(result[0])
+    res.send(result[0])});
+  })
+
+  app.get('/getguide',(req,res)=>{
+    const userID=req.query.userID
+    const getguide="call getguide(?)";
+    db.query(getguide, [userID],(err,result)=>{
+    console.log(result[0])
+    res.send(result[0])});
+  })
+
+db.connect((err)=>{
+    if(err){
+        console.log("error connect database =",err)
+        return;
+    }
+    console.log("mysql connect success");
+})
