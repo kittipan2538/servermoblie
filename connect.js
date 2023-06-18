@@ -95,7 +95,7 @@ app.post("/registermb", (req, res) => {
 
     const quantitys=req.query.quantitys;
     const remainders=req.query.remainders;
-    const gettourdetails="call gettourdetails(?,?,?,?,?,?,?)";
+    const gettourdetails="call gettourdetails(?,?,?,?,?,?)";
     db.query(gettourdetails,[details,fullnames,days,times,quantitys,remainders],(err,result)=>{
     res.send(result[0])});
   })
@@ -126,7 +126,7 @@ app.post("/registermb", (req, res) => {
  
     const userID=req.body.userID;
     const tour_picture=req.body.tour_picture;
-    const createtour="call createtour(?,?,?,?,?,?,?)";
+    const createtour="call createtour(?,?,?,?,?,?)";
     db.query(createtour,[nametour,days,quantity,details,userID,tour_picture],(err,result)=>{
       if(err){
         console.log(err);
