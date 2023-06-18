@@ -92,11 +92,11 @@ app.post("/registermb", (req, res) => {
     const fullnames=req.query.fullname;
     const days=req.query.days;
     const times=req.query.times;
-    const typese=req.query.typese;
+
     const quantitys=req.query.quantitys;
     const remainders=req.query.remainders;
     const gettourdetails="call gettourdetails(?,?,?,?,?,?,?)";
-    db.query(gettourdetails,[details,fullnames,days,times,typese,quantitys,remainders],(err,result)=>{
+    db.query(gettourdetails,[details,fullnames,days,times,quantitys,remainders],(err,result)=>{
     res.send(result[0])});
   })
 
@@ -123,11 +123,11 @@ app.post("/registermb", (req, res) => {
     const days=req.body.days;
     const quantity=req.body.quantity;
     const details=req.body.details;
-    const typetour=req.body.typetour;
+ 
     const userID=req.body.userID;
     const tour_picture=req.body.tour_picture;
     const createtour="call createtour(?,?,?,?,?,?,?)";
-    db.query(createtour,[nametour,days,quantity,details,typetour,userID,tour_picture],(err,result)=>{
+    db.query(createtour,[nametour,days,quantity,details,userID,tour_picture],(err,result)=>{
       if(err){
         console.log(err);
       }else{
