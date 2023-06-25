@@ -101,14 +101,14 @@ app.post("/registermb", (req, res) => {
   })
 
   app.post('/createprofile',(req,res)=>{
-    
+    const userID=req.body.userID
     const Fname=req.body.Fname;
     const Lname=req.body.Lname;
     const Id_card_no=req.body.Id_card_no;
     
 
     const createprofile="call createprofile(?,?,?)";
-    db.query(createprofile,[Fname,Lname,Id_card_no],(err,result)=>{
+    db.query(createprofile,[userID,Fname,Lname,Id_card_no],(err,result)=>{
       if(err){
         console.log(err);
       }else{
