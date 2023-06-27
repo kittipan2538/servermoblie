@@ -236,6 +236,14 @@ app.post("/registermb", (req, res) => {
     res.send(result[0])});
   })
 
+  app.get('/getpersonal',(req,res)=>{
+    const userID=req.query.userID
+    const getpersonal="call getpersonal(?)";
+    db.query(getpersonal, [userID],(err,result)=>{
+    console.log(result[0])
+    res.send(result[0])});
+  })
+
 db.connect((err)=>{
     if(err){
         console.log("error connect database =",err)
