@@ -244,6 +244,14 @@ app.post("/registermb", (req, res) => {
     res.send(result[0])});
   })
 
+  app.get('/getimageguide',(req,res)=>{
+    const userID=req.query.userID
+    const getimageguide="call getimageguide(?)";
+    db.query(getimageguide, [userID],(err,result)=>{
+    console.log(result[0])
+    res.send(result[0])});
+  })
+
 db.connect((err)=>{
     if(err){
         console.log("error connect database =",err)
