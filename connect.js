@@ -118,6 +118,24 @@ app.post("/registermb", (req, res) => {
     
   })
 
+  app.put('/updateprofile',(req,res)=>{
+    
+    const Fname=req.body.Fname;
+    const Lname=req.body.Lname;
+    const Id_card_no=req.body.Id_card_no;
+    const userID=req.body.userID
+
+    const updateprofile="call updateprofile(?,?,?,?)";
+    db.query(updateprofile,[Fname,Lname,Id_card_no,userID],(err,result)=>{
+      if(err){
+        console.log(err);
+      }else{
+        res.send(result[0]);
+      }
+    })
+    
+  })
+
   app.post('/createtour',(req,res)=>{
     const nametour=req.body.nametour;
     const days=req.body.days;
