@@ -32,6 +32,20 @@ app.post('/upcertificate',(req,res)=>{
 
 })
 
+app.put('/updatecertificate',(req,res)=>{
+  const certificate=req.body.certificate;
+  const userID=req.body.userID
+  const updatecertificate="call updatecertificate(?,?)";
+  db.query(updatecertificate,[certificate,userID],(err,result)=>{
+    if(err){
+      console.log(err);
+    }else{
+      res.send(result[0]);
+    }
+  })
+
+})
+
 app.get('/getcertificate',(req,res)=>{
   const certificate = req.query.certificate;
   const getcertificate = "call getcertificate(?)";
