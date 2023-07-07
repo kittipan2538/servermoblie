@@ -40,7 +40,7 @@ app.put('/updatecertificate',(req,res)=>{
     if(err){
       console.log(err);
     }else{
-      res.send(result[0]);
+      res.send(result[0]); 
     }
   })
 
