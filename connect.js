@@ -283,6 +283,14 @@ app.post("/registermb", (req, res) => {
     res.send(result[0])}); 
   })
 
+  app.get('/getNotification',(req,res)=>{
+    const userID=req.query.userID
+    const getNotification="call getNotification(?)";
+    db.query(getNotification, [userID],(err,result)=>{
+    console.log(result[0])
+    res.send(result[0])});
+  })
+
 db.connect((err)=>{
     if(err){
         console.log("error connect database =",err)
