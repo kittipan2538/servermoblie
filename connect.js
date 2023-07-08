@@ -223,7 +223,6 @@ app.post("/registermb", (req, res) => {
   })
 
   
-  
   app.delete("/deletetour", (req, res) => {
     const tourID=req.body.tourID
     const deletetour = "call deletetour(?)";
