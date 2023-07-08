@@ -57,7 +57,7 @@ app.get('/getcertificate',(req,res)=>{
       console.log(result[0])
     }
   })
-})
+}) 
 
 app.post("/registermb", (req, res) => {
     const email = req.body.email;
