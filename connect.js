@@ -281,7 +281,7 @@ app.post("/registermb", (req, res) => {
     const getimageguide="call getimageguide(?)";
     db.query(getimageguide, [tourID],(err,result)=>{
     console.log(result[0])
-    res.send(result[0])});
+    res.send(result[0])}); 
   })
 
 db.connect((err)=>{
