@@ -44,7 +44,7 @@ app.put('/updatecertificate',(req,res)=>{
     }
   })
 
-})
+}) 
 
 app.get('/getcertificate',(req,res)=>{
   const certificate = req.query.certificate;
