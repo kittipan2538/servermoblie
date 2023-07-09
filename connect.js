@@ -265,7 +265,7 @@ app.post("/registermb", (req, res) => {
     db.query(getguide, [userID],(err,result)=>{
     console.log(result[0])
     res.send(result[0])});
-  })
+  }) 
 
   app.get('/getpersonal',(req,res)=>{
     const userID=req.query.userID
