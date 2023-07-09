@@ -174,7 +174,7 @@ app.post("/registermb", (req, res) => {
     const getActivity="call getActivity(?)";
     db.query(getActivity, [userID],(err,result)=>{
     console.log(result[0])
-    res.send(result[0])});
+    res.send(result[0])}); 
   })
 
   app.get('/getrepout',(req,res)=>{
