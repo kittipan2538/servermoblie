@@ -188,7 +188,7 @@ app.post("/registermb", (req, res) => {
   })
 
   app.get('/applytour',(req,res)=>{
-    const tourID=req.query.tourID
+    const tourID=req.query.tourID 
     const userID=req.query.userID
     const applytour="call applytour(?,?)";
     db.query(applytour, [tourID,userID],(err,result)=>{
