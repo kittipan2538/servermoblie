@@ -88,7 +88,7 @@ app.post("/registermb", (req, res) => {
           res.send(result[0]);
         }else {
           console.log("baned user");
-          res.status(401);
+          res.status(401).send();
         }
       } else {
         console.log("Wrong Email or Password");
