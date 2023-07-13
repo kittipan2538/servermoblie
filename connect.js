@@ -64,8 +64,11 @@ app.post("/registermb", (req, res) => {
     const passwords = req.body.passwords;
     const tel = req.body.tel;
     const status = req.body.status;
-    const registermb = "call registermb(?,?,?,?)";
-    db.query(registermb, [email, passwords,tel,status], (err, result) => {
+    const Fname = req.body.Fname;
+    const Lname = req.body.Lname;
+    const Id_card_no = req.body.Id_card_no;
+    const registermb = "call registermb(?,?,?,?,?,?,?)";
+    db.query(registermb, [email, passwords,tel,status,Fname,Lname,Id_card_no], (err, result) => {
       if (err) {
         console.log(err);
       } else {
