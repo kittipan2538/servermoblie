@@ -64,9 +64,8 @@ app.post("/registermb", (req, res) => {
     const passwords = req.body.passwords;
     const tel = req.body.tel;
     const status = req.body.status;
-    const userID = req.body.userID;
-    const registermb = "call registermb(?,?,?,?,?)";
-    db.query(registermb, [email, passwords,tel,status,userID], (err, result) => {
+    const registermb = "call registermb(?,?,?,?)";
+    db.query(registermb, [email, passwords,tel,status], (err, result) => {
       if (err) {
         console.log(err);
       } else {
