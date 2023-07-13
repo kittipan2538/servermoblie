@@ -83,8 +83,7 @@ app.post("/registermb", (req, res) => {
         console.log(err);
       }
       if (result[0].length > 0) {
-        
-        if (result[0].statususer == 0){
+        if (result[0][0].statususer == 0){
           res.send(result[0]);
         }else {
           console.log("baned user");
