@@ -277,6 +277,7 @@ app.post("/registermb", (req, res) => {
       if (result[0].length > 0) {
         console.log(result[0][0].approved)
         if (result[0][0].approved == 'Approved'){
+          console.log('Approve')
           res.send(result[0]);
         }else {
           console.log("not Approved");
