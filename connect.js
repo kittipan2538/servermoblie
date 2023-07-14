@@ -313,6 +313,15 @@ app.post("/registermb", (req, res) => {
     res.send(result[0])});
   })
 
+  app.get('/getimage',(req,res)=>{
+    const tourID=req.query.tourID
+    const getimageguide="call getimageguide(?)";
+    db.query(getimageguide, [tourID],(err,result)=>{
+        console.log(err);
+        res.send(result[0]);
+      }); 
+  })
+
 db.connect((err)=>{
     if(err){
         console.log("error connect database =",err)
