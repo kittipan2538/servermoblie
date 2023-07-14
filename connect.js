@@ -287,7 +287,7 @@ app.post("/registermb", (req, res) => {
         res.send(false);
       }
   });
-  })
+  }) 
 
   app.get('/getpersonal',(req,res)=>{
     const userID=req.query.userID
@@ -319,14 +319,6 @@ app.post("/registermb", (req, res) => {
   }); 
   })
 
-  app.get('/getNotification',(req,res)=>{
-    const userID=req.query.userID
-    const getNotification="call getNotification(?)";
-    db.query(getNotification, [userID],(err,result)=>{
-    console.log(result[0])
-    res.send(result[0])});
-  })
-
   app.get('/getimage',(req,res)=>{
     const tourID=req.query.tourID
     const getimageguide="call getimageguide(?)";
@@ -334,6 +326,13 @@ app.post("/registermb", (req, res) => {
         console.log(err);
         res.send(result[0]);
       }); 
+  })
+  app.get('/getNotification',(req,res)=>{
+    const userID=req.query.userID
+    const getNotification="call getNotification(?)";
+    db.query(getNotification, [userID],(err,result)=>{
+    console.log(result[0])
+    res.send(result[0])});
   })
 
 db.connect((err)=>{
