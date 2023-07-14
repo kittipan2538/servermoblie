@@ -281,7 +281,7 @@ app.post("/registermb", (req, res) => {
           res.send(result[0]);
         }else {
           console.log("not Approved");
-          res.status(401).send();
+          
         }
       } else {
         console.log("อะไรวะ");
