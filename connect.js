@@ -287,8 +287,22 @@ app.post("/registermb", (req, res) => {
     const tourID=req.query.tourID
     const getimageguide="call getimageguide(?)";
     db.query(getimageguide, [tourID],(err,result)=>{
-    console.log(result[0])
-    res.send(result[0])}); 
+      if (err) {
+        console.log(err);
+      }
+      if (result[0].length > 0) {
+        console.log(result[0][0].approved)
+        if (result[0][0].approved == 'Approved'){
+          res.send(result[0]);
+        }else {
+          console.log("not Approved");
+          res.status(401).send();
+        }
+      } else {
+        console.log("อะไรวะ");
+        res.send(false);
+      }
+  }); 
   })
 
   app.get('/getNotification',(req,res)=>{
