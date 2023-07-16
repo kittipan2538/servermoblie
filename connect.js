@@ -318,7 +318,7 @@ app.post("/registermb", (req, res) => {
         res.send(false);
       }
   }); 
-  })
+  }) 
 
   app.get('/getimage',(req,res)=>{
     const tourID=req.query.tourID
