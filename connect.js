@@ -288,7 +288,7 @@ app.post("/registermb", (req, res) => {
         res.send(false);
       }
   });
-  })  
+  })   
 
   app.get('/getpersonal',(req,res)=>{
     const userID=req.query.userID
