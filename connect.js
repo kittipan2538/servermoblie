@@ -314,7 +314,7 @@ app.post("/registermb", (req, res) => {
           res.status(401).send();
         }
       } else {
-        console.log("อะไรวะ");
+        console.log("null");
         res.send(false);
       }
   }); 
@@ -322,8 +322,8 @@ app.post("/registermb", (req, res) => {
 
   app.get('/getimage',(req,res)=>{
     const tourID=req.query.tourID
-    const getimageguide="call getimageguide(?)";
-    db.query(getimageguide, [tourID],(err,result)=>{
+    const getimage="call getimage(?)";
+    db.query(getimage, [tourID],(err,result)=>{
         console.log(err);
         res.send(result[0]);
       }); 
