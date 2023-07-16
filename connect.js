@@ -47,9 +47,9 @@ app.put('/updatecertificate',(req,res)=>{
 })  
 
 app.get('/getcertificate',(req,res)=>{
-  const certificate = req.query.certificate;
+  const userID=req.query.userID
   const getcertificate = "call getcertificate(?)";
-  db.query(getcertificate,[certificate],(err,result)=>{
+  db.query(getcertificate,[userID],(err,result)=>{
     if (err) {
       console.log(err);
     } else {
