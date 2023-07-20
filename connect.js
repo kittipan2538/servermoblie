@@ -347,6 +347,72 @@ app.post("/registermb", (req, res) => {
    });
   });
 
+  app.get("/counttour", (req, res) => {
+    const tourID=req.query.tourID
+    const counttour = "call counttour(?)";
+    db.query(counttour, [tourID], (err, result) => {
+      if (err) {
+        console.log(err);
+      } 
+      console.log(result[0][0].COUNTtour)
+      console.log(result[0][0].quantity)
+      if (result[0][0].COUNTtour < result[0][0].quantity){
+        console.log("ok");
+        res.send(result[0]);
+      }else {
+        console.log("full");
+        res.status(403).send();
+      }
+    });
+  });
+
+  app.get('/getaction',(req,res)=>{
+    const userID=req.query.userID
+    console.log(userID);
+    const getaction="call getaction(?)";
+    db.query(getaction, [userID],(err,result)=>{
+        console.log(err);
+        res.send(result[0]);
+      }); 
+  }) 
+
+  app.get('/validaterepout',(req,res)=>{
+    const tourID=req.query.tourID
+    console.log(tourID)
+    const validaterepout="call validaterepout(?)";
+    db.query(validaterepout, [tourID],(err,result)=>{
+      if (err) {
+        console.log(err);
+      } 
+      console.log(result[0][0].statustour)
+      if (result[0][0].statustour == 1){
+        console.log("ok");
+        res.send(result[0]);
+      }else {
+        console.log("cannot report");
+        res.status(403).send();
+      }});
+    });
+
+    app.get('/validateguide',(req,res)=>{
+      const userID=req.query.userID
+      console.log(userID)
+      const validateguide="call validateguide(?)";
+      db.query(validateguide,[userID],(err,result)=>{
+        if (err) {
+          console.log(err);
+        } 
+        console.log(result[0][0])
+        if (result[0][0].statusguide == 1){
+            console.log('guide')
+            res.send(result[0]);
+          }else {
+            console.log("not guide");
+            res.status(403).send();
+        }});
+      });
+
+
 db.connect((err)=>{
     if(err){
         console.log("error connect database =",err)
