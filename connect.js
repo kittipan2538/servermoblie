@@ -336,6 +336,17 @@ app.post("/registermb", (req, res) => {
     res.send(result[0])});
   })
 
+  app.post('/validatetour',(req,res)=>{
+    const validatetour="call validatetour()";
+    db.query(validatetour,[],(err,result)=>{
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+   });
+  });
+
 db.connect((err)=>{
     if(err){
         console.log("error connect database =",err)
